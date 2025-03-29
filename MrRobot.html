@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>http://341223.cibule</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Přihlášení do systému</h1>
+        <p>Zadejte kombinaci tří hesel</p>
+        <div id="hidden-messages">
+            <!-- Skryté zprávy, které obsahují kódy -->
+            <a href="https://www.youtube.com/watch?v=5k27rgYqRK8" target="_blank"><p class="hidden-text">1 0101 1011 11 1001 111 1</p></a>
+            <a href="./SUSA9901.jpg"><p class="hidden-text" target="_blank">1001 1111 10 01 0 000 00</p></a>
+            <a href="https://www.youtube.com/watch?v=L36INNoy_II" target="_blank"><p class="hidden-text">1100001 1101100 1100100 1100101 1110010 1110011 1101111 1101110</p></a>
+        </div>
+        <input type="text" id="input-code" placeholder="Zadej kód">
+        <button id="submit-button">POTVRDIT</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        // script.js
+const validCodes = ['eclipse', 'phantom', 'alderson'];
+let foundCodes = [];
+const hiddenTexts = document.querySelectorAll('.hidden-text');
+
+document.getElementById('submit-button').addEventListener('click', function() {
+    const inputCode = document.getElementById('input-code').value;
+    if (validCodes.includes(inputCode) && !foundCodes.includes(inputCode)) {
+        foundCodes.push(inputCode);
+        document.getElementById('input-code').value = '';
+        document.getElementById('result').innerText = `Heslo ${inputCode} bylo úspěšně zadáno!`;
+    } else if (foundCodes.includes(inputCode)) {
+        document.getElementById('result').innerText = `Heslo ${inputCode} bylo již zadané.`;
+    } else {
+        document.getElementById('result').innerText = `Heslo ${inputCode} není platné.`;
+    }
+    if (foundCodes.length === validCodes.length) {
+        document.getElementById('result').innerText = `Všechna hesla byla zadána! Gratulujeme, získal jsi přístup k systému!`;
+    }
+});
+
+    </script>
+</body>
+</html>
